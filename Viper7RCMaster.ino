@@ -1,6 +1,25 @@
 /*
- Example sketch for the Xbox ONE USB library - by guruthree, based on work by
- Kristian Lauszus.
+ * Viper7RCMaster.ino
+ *
+ * Sketch by Viper7Gamer
+ * For using Xbox Series X Controller
+ * 
+ * Use the Left Stick for Steering
+ * Use Right Trigger for Throttle
+ * 
+ * Dpad Left, Dpad Right to set Steering Trim
+ * Dpad Up, Dpad Down to set Throttle Trim
+ * 
+ * Select button Reset Steering Trim
+ * Menu button Reset Throttle Trim
+ * 
+ * 
+ * Using:
+ *  Sketch by David Simpson
+ *  AssistiveTechStuff/AdaptiveRCController
+ * 
+ *  Example sketch for the Xbox ONE USB library - by guruthree, based on work by
+ *  Kristian Lauszus.
  */
 
 #include <XBOXONE.h>
@@ -113,26 +132,35 @@ void loop() {
       Serial.println();
     }
 
-    // Set rumble effect
-    static uint16_t oldLTValue, oldRTValue;
-    if (Xbox.getButtonPress(LT) != oldLTValue || Xbox.getButtonPress(RT) != oldRTValue) {
-      oldLTValue = Xbox.getButtonPress(LT);
-      oldRTValue = Xbox.getButtonPress(RT);
-      uint8_t leftRumble = map(oldLTValue, 0, 1023, 0, 255); // Map the trigger values into a byte
-      uint8_t rightRumble = map(oldRTValue, 0, 1023, 0, 255);
-      if (leftRumble > 0 || rightRumble > 0)
-        Xbox.setRumbleOff();
-    //Xbox.setRumbleOn(leftRumble, rightRumble, leftRumble, rightRumble);
-      else
-        Xbox.setRumbleOff();
-    }
+   // V7G Commented out the Trigger Rumble 
+   // Set rumble effect 
+   // static uint16_t oldLTValue, oldRTValue;
+   // if (Xbox.getButtonPress(LT) != oldLTValue || Xbox.getButtonPress(RT) != oldRTValue) {
+   //   oldLTValue = Xbox.getButtonPress(LT);
+   //   oldRTValue = Xbox.getButtonPress(RT);
+   //   uint8_t leftRumble = map(oldLTValue, 0, 1023, 0, 255); // Map the trigger values into a byte
+   //   uint8_t rightRumble = map(oldRTValue, 0, 1023, 0, 255);
+   //   if (leftRumble > 0 || rightRumble > 0)
+   //     // I turned the Trigger Rumble off
+   //     Xbox.setRumbleOff();
+   //     //Xbox.setRumbleOn(leftRumble, rightRumble, leftRumble, rightRumble);
+   //   else
+   //     Xbox.setRumbleOff();
+   // }
 
+   // Adjust Throttle Trim Up
     if (Xbox.getButtonClick(UP))
       Serial.println(F("Up"));
+   
+   // Adjust Throttle Trim Down   
     if (Xbox.getButtonClick(DOWN))
       Serial.println(F("Down"));
+   
+   // Adjust Steering Trim Left   
     if (Xbox.getButtonClick(LEFT))
       Serial.println(F("Left"));
+   
+   // Adjust Steering Trim Right   
     if (Xbox.getButtonClick(RIGHT))
       Serial.println(F("Right"));
 
@@ -169,6 +197,7 @@ void loop() {
       nSVal = Xbox.getAnalogHat(LeftHatX);
       ShowSteering();
     }
+   
     if (Xbox.getButtonClick(B))
       Serial.println(F("B"));
     if (Xbox.getButtonClick(X))
