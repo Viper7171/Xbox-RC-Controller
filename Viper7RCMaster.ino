@@ -10,8 +10,8 @@
  * Dpad Left, Dpad Right to set Steering Trim
  * Dpad Up, Dpad Down to set Throttle Trim
  * 
- * Select button Reset Steering Trim
- * Menu button Reset Throttle Trim
+ * Back/Select button Reset Steering Trim
+ * Start button Reset Throttle Trim
  * 
  * 
  * Using:
@@ -47,10 +47,11 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 
 // Setup some variables
 int steeringTrim = 0;
+int throttleTrim = 0;
 int steeringTrimLCD = 0;
 int speedSetting = 1;
-int speedMax = 1590;
-int speedMin = 1410;
+int speedMax = 2000;
+int speedMin = 1000;
 
 int nSVal = 0;
 int nTVal = 0;
@@ -78,7 +79,7 @@ void setup() {
   lcd.setCursor(0, 0);
   lcd.print("ST: 0           ");
   lcd.setCursor(0, 1);
-  lcd.print("TT: 1           ");
+  lcd.print("TT: 0           ");
 
 
 
@@ -149,25 +150,41 @@ void loop() {
    // }
 
    // Adjust Throttle Trim Up
-    if (Xbox.getButtonClick(UP))
-      Serial.println(F("Up"));
-   
+    if (Xbox.getButtonClick(UP)) {
+      Serial.println(F("Throttle Trim Up"));
+      throttleTrim ++1;
+    }
+    
    // Adjust Throttle Trim Down   
-    if (Xbox.getButtonClick(DOWN))
-      Serial.println(F("Down"));
-   
+    if (Xbox.getButtonClick(DOWN)) {
+      Serial.println(F("Throttle Trim Down"));
+      throttleTrim --1;
+    }
+    
    // Adjust Steering Trim Left   
-    if (Xbox.getButtonClick(LEFT))
-      Serial.println(F("Left"));
-   
+    if (Xbox.getButtonClick(LEFT)) {
+      Serial.println(F("Steering Trim Left"));
+      steeringTrim --1;
+    }
+    
    // Adjust Steering Trim Right   
-    if (Xbox.getButtonClick(RIGHT))
-      Serial.println(F("Right"));
-
-    if (Xbox.getButtonClick(START))
-      Serial.println(F("Start"));
-    if (Xbox.getButtonClick(BACK))
-      Serial.println(F("Back"));
+    if (Xbox.getButtonClick(RIGHT)) {
+      Serial.println(F("Steering Trim Right"));
+      steeringTrim ++1;
+    }
+    
+    // Throttle Trim Reset
+    if (Xbox.getButtonClick(START)) {
+      Serial.println(F("Throttle Trim Reset"));
+      throttleTrim = 0;
+    }
+    
+    // Steering Trim Reset
+    if (Xbox.getButtonClick(BACK)) {
+      Serial.println(F("Steering Trim Reset"));
+      steeringTrim = 0;
+    }
+    
     if (Xbox.getButtonClick(XBOX))
       Serial.println(F("Xbox"));
     if (Xbox.getButtonClick(SYNC))
