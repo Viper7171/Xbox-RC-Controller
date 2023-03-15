@@ -171,6 +171,7 @@ void loop() {
     if (Xbox.getButtonClick(RIGHT)) {
       Serial.println(F("Steering Trim Right"));
       steeringTrim = steeringTrim + 1;
+      steeringTrimRefreshLCD;
     }
     
     // Throttle Trim Reset
@@ -228,7 +229,7 @@ void loop() {
 // Function to update steering trim setting information on LCD
 // Converts steeringTrimLCD from negative and positive numbers to L and R
 void steeringTrimRefreshLCD() {
-  steeringTrimLCD = map(steeringTrim, -100, 100, -20, 20); // Remap steering trim adjustment to single increments
+  steeringTrimLCD = steeringTrim; //= map(steeringTrim, -100, 100, -20, 20); // Remap steering trim adjustment to single increments
   if (steeringTrimLCD < 0) {
     steeringTrimLCD = abs(steeringTrimLCD);
     lcd.setCursor(5, 0);
