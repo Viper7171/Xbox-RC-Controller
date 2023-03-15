@@ -152,25 +152,25 @@ void loop() {
    // Adjust Throttle Trim Up
     if (Xbox.getButtonClick(UP)) {
       Serial.println(F("Throttle Trim Up"));
-      throttleTrim ++1;
+      throttleTrim = throttleTrim + 1;
     }
     
    // Adjust Throttle Trim Down   
     if (Xbox.getButtonClick(DOWN)) {
       Serial.println(F("Throttle Trim Down"));
-      throttleTrim --1;
+      throttleTrim = throttleTrim - 1;
     }
     
    // Adjust Steering Trim Left   
     if (Xbox.getButtonClick(LEFT)) {
       Serial.println(F("Steering Trim Left"));
-      steeringTrim --1;
+      steeringTrim = steeringTrim - 1;
     }
     
    // Adjust Steering Trim Right   
     if (Xbox.getButtonClick(RIGHT)) {
       Serial.println(F("Steering Trim Right"));
-      steeringTrim ++1;
+      steeringTrim = steeringTrim + 1;
     }
     
     // Throttle Trim Reset
