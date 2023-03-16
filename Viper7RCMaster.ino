@@ -54,6 +54,7 @@ int steeringTrimIncrement = 100;
 int throttleTrim = 0;
 int throttleTrimLCD = 0;
 int throttleTrimActual = 0;
+int throttleTrimIncrement = 50;
 
 int speedSetting = 1;
 int speedMax = 2000;
@@ -260,8 +261,11 @@ void steeringTrimRefreshLCD() {
   }
 }
 void throttleTrimRefreshLCD() {
+  throttleTrimLCD = throttleTrim;
+  throttleTrimActual = ThrottleTrim * throttleTrimIncrement;
+  
   lcd.setCursor(4, 1);
-  lcd.print(String(speedSetting));
+  lcd.print(String(throttleTrimLCD) + "   ");
 }
 
 void ShowSteering() {
