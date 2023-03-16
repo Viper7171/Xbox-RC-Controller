@@ -49,6 +49,7 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 int steeringTrim = 0;
 int steeringTrimLCD = 0;
 int steeringTrimActual = 0;
+int steeringTrimIncrement = 100;
 
 int throttleTrim = 0;
 int throttleTrimLCD = 0;
@@ -240,7 +241,7 @@ void loop() {
 void steeringTrimRefreshLCD() {
   steeringTrimLCD = steeringTrim; //= map(steeringTrim, -100, 100, -20, 20); // Remap steering trim adjustment to single increments
 
-  steeringTrimActual = steeringTrim * 100;
+  steeringTrimActual = steeringTrim * steeringTrimIncrement;
 
   if (steeringTrimLCD < 0) {
     steeringTrimLCD = abs(steeringTrimLCD);
@@ -251,7 +252,7 @@ void steeringTrimRefreshLCD() {
     lcd.print("R" + String(steeringTrimLCD) + "   ");
   } else {
     lcd.setCursor(4, 0);
-    lcd.print("-" + String(steeringTrimLCD) + "   ");
+    lcd.print("" + String(steeringTrimLCD) + "   ");
   }
 }
 void speedSettingRefreshLCD() {
