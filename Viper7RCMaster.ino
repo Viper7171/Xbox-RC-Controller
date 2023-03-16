@@ -133,6 +133,8 @@ void loop() {
         Serial.print(F("LT: "));
         Serial.print(Xbox.getButtonPress(LT));
         Serial.print("\t");
+        nTVal = Xbox.getButtonPress(LT) * (-1);
+        ShowThrottle();
       }
       if (Xbox.getButtonPress(RT) > 0) {
         Serial.print(F("RT: "));
