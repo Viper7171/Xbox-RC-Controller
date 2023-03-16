@@ -244,6 +244,8 @@ void loop() {
 // Function to update steering trim setting information on LCD
 // Converts steeringTrimLCD from negative and positive numbers to L and R
 void steeringTrimRefreshLCD() {
+  
+  lcd.setBacklight(GREEN);
   steeringTrimLCD = steeringTrim; //= map(steeringTrim, -100, 100, -20, 20); // Remap steering trim adjustment to single increments
 
   steeringTrimActual = steeringTrim * steeringTrimIncrement;
@@ -261,6 +263,8 @@ void steeringTrimRefreshLCD() {
   }
 }
 void throttleTrimRefreshLCD() {
+  lcd.setBacklight(RED);
+  
   throttleTrimLCD = throttleTrim;
   throttleTrimActual = throttleTrim * throttleTrimIncrement;
   
