@@ -162,12 +162,14 @@ void loop() {
     if (Xbox.getButtonClick(UP)) {
       Serial.println(F("Throttle Trim Up"));
       throttleTrim = throttleTrim + 1;
+      throttleTrimRefreshLCD();
     }
     
     // Dpad Down - Adjust Throttle Trim Down   
     if (Xbox.getButtonClick(DOWN)) {
       Serial.println(F("Throttle Trim Down"));
       throttleTrim = throttleTrim - 1;
+      throttleTrimRefreshLCD();
     }
     
     // Dpad Left - Adjust Steering Trim Left   
@@ -188,12 +190,14 @@ void loop() {
     if (Xbox.getButtonClick(START)) {
       Serial.println(F("Throttle Trim Reset"));
       throttleTrim = 0;
+      throttleTrimRefreshLCD();
     }
     
     // Steering Trim Reset
     if (Xbox.getButtonClick(BACK)) {
       Serial.println(F("Steering Trim Reset"));
       steeringTrim = 0;
+      steeringTrimRefreshLCD();
     }
     
     if (Xbox.getButtonClick(XBOX))
@@ -255,7 +259,7 @@ void steeringTrimRefreshLCD() {
     lcd.print("" + String(steeringTrimLCD) + "   ");
   }
 }
-void speedSettingRefreshLCD() {
+void throttleTrimRefreshLCD() {
   lcd.setCursor(4, 1);
   lcd.print(String(speedSetting));
 }
