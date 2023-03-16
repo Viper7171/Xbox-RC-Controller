@@ -251,7 +251,7 @@ void steeringTrimRefreshLCD() {
     lcd.print("R" + String(steeringTrimLCD) + "   ");
   } else {
     lcd.setCursor(4, 0);
-    lcd.print("0" + String(steeringTrimLCD) + "   ");
+    lcd.print("-" + String(steeringTrimLCD) + "   ");
   }
 }
 void speedSettingRefreshLCD() {
