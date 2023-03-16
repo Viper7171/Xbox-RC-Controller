@@ -1,5 +1,5 @@
 /*
- * Viper7RCMaster.ino 3/12
+ * Viper7RCMaster.ino 3/12 0
  *
  * Sketch by Viper7Gamer
  * For using Xbox Series X Controller
@@ -47,8 +47,13 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 
 // Setup some variables
 int steeringTrim = 0;
-int throttleTrim = 0;
 int steeringTrimLCD = 0;
+int steeringTrimActual = 0;
+
+int throttleTrim = 0;
+int throttleTrimLCD = 0;
+int throttleTrimActual = 0;
+
 int speedSetting = 1;
 int speedMax = 2000;
 int speedMin = 1000;
@@ -234,6 +239,9 @@ void loop() {
 // Converts steeringTrimLCD from negative and positive numbers to L and R
 void steeringTrimRefreshLCD() {
   steeringTrimLCD = steeringTrim; //= map(steeringTrim, -100, 100, -20, 20); // Remap steering trim adjustment to single increments
+
+  steeringTrimActual = steeringTrim * 100;
+
   if (steeringTrimLCD < 0) {
     steeringTrimLCD = abs(steeringTrimLCD);
     lcd.setCursor(4, 0);
