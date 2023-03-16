@@ -262,7 +262,7 @@ void steeringTrimRefreshLCD() {
 }
 void throttleTrimRefreshLCD() {
   throttleTrimLCD = throttleTrim;
-  throttleTrimActual = ThrottleTrim * throttleTrimIncrement;
+  throttleTrimActual = throttleTrim * throttleTrimIncrement;
   
   lcd.setCursor(4, 1);
   lcd.print(String(throttleTrimLCD) + "   ");
