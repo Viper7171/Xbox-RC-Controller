@@ -242,17 +242,17 @@ void steeringTrimRefreshLCD() {
 
   steeringTrimActual = steeringTrim * 100;
 
-  if (steeringTrimLCD < 0) {
-    steeringTrimLCD = abs(steeringTrimLCD);
-    lcd.setCursor(4, 0);
-    lcd.print("L" + String(steeringTrimLCD) + "   ");    
-  } else if (steeringTrimLCD > 0) {
-    lcd.setCursor(4, 0);
-    lcd.print("R" + String(steeringTrimLCD) + "   ");
-  } else {
+//  if (steeringTrimLCD < 0) {
+//    steeringTrimLCD = abs(steeringTrimLCD);
+//    lcd.setCursor(4, 0);
+//    lcd.print("L" + String(steeringTrimLCD) + "   ");    
+//  } else if (steeringTrimLCD > 0) {
+//    lcd.setCursor(4, 0);
+//    lcd.print("R" + String(steeringTrimLCD) + "   ");
+//  } else {
     lcd.setCursor(4, 0);
     lcd.print("-" + String(steeringTrimLCD) + "   ");
-  }
+//  }
 }
 void speedSettingRefreshLCD() {
   lcd.setCursor(4, 1);
