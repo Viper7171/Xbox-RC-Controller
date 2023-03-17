@@ -127,6 +127,24 @@ void setup() {
   Serial.print(F("\r\nXBOX ONE USB Library Started"));
   Serial.println();
 
+ 
+ ///////////////////////////////
+  previousSwitchValue = HIGH;
+  
+  //initiallize default ppm values
+  for(int i=0; i<CHANNEL_NUMBER; i++){
+    if (i == 2 || i == CHANNEL_TO_MODIFY) {
+      ppm[i] = 1000;
+    } else {
+      ppm[i]= CHANNEL_DEFAULT_VALUE;
+    }
+  }
+  
+  pinMode(sigPin, OUTPUT);
+  pinMode(SWITCH_PIN, INPUT_PULLUP);
+  digitalWrite(sigPin, !onState);  //set the PPM signal pin to the default state (off)
+
+ 
   // Set up the LCD's number of columns and rows and display static text
   lcd.begin(16, 2);
   lcd.setCursor(0, 0);
@@ -135,12 +153,20 @@ void setup() {
   lcd.print("TT: 0           ");
 
 
+  cli();
+  TCCR1A = 0; // set entire TCCR1 register to 0
+  TCCR1B = 0;
+  
+  OCR1A = 100;  // compare match register, change this
+  TCCR1B |= (1 << WGM12);  // turn on CTC mode
+  TCCR1B |= (1 << CS11);  // 8 prescaler: 0,5 microseconds at 16mhz
+  TIMSK1 |= (1 << OCIE1A); // enable timer compare interrupt
+  sei();
 
+  currentChannelStep = SWITCH_STEP; 
   
   
-
 }
-
 
 
 void loop() {
