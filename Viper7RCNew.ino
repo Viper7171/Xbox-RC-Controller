@@ -21,6 +21,24 @@
  * 
  *  Example sketch for the Xbox ONE USB library - by guruthree, based on work by
  *  Kristian Lauszus.
+ *
+ *
+ * PPM Output is on Pin 3 
+ * 
+ * Download USB Host Shield Library First 
+ * https://github.com/felis/USB_Host_Shield_2.0/archive/master.zip
+ * 
+ * Channel Info Currently Setup AS AETR you can change this by changing the PPM Value in the main loop
+ * 
+ * Ch1 A (Steering) ==  ppm[0]
+ * Ch2 E (Throttle) ==  ppm[1]
+ * Ch3 T (NOT USED) ==  ppm[2]
+ * Ch4 R (NOT USED) ==  ppm[3]
+ * Ch5 AUX1 (NOT USED) == ppm[4]
+ * Ch6 AUX2 (NOT USED) == ppm[5]
+ * Ch7 AUX3 (NOT USED) == ppm[6]
+ * Ch8 AUX4 (NOT USED) == ppm[7]
+ *
  */
 
 #include <XBOXONE.h>
