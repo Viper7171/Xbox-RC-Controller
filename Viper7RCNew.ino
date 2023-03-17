@@ -1,11 +1,12 @@
 /*
- * Viper7RCMaster.ino 3/12 0
+ * Viper7RCNew.ino 3/17
  *
  * Sketch by Viper7Gamer
  * For using Xbox Series X Controller
  * 
  * Use the Left Stick for Steering
  * Use Right Trigger for Throttle
+ * Use Left Trigger for Reverse
  * 
  * Dpad Left, Dpad Right to set Steering Trim
  * Dpad Up, Dpad Down to set Throttle Trim
