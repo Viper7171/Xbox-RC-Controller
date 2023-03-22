@@ -214,10 +214,14 @@ void loop() {
         //ShowThrottle();
       }
       if (Xbox.getButtonPress(RT) > 0) {
+         ppm[1] = map(Xbox.getButtonPress(RT), 0 , 1024, 1500, 2000);
+      } else {
+        ppm[1] = 1500;
+          
         //Serial.print(F("RT: "));
         //Serial.print(Xbox.getButtonPress(RT));
         //Serial.print("\t");
-        nTVal = Xbox.getButtonPress(RT);
+        //nTVal = Xbox.getButtonPress(RT);
         //ShowThrottle();
       }
       Serial.println();
