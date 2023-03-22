@@ -322,7 +322,13 @@ void loop() {
     if (Xbox.getButtonClick(Y))
       Serial.println(F("Y"));
   }
-  delay(1);
+ 
+  if (Xbox.XboxOneConnected == false){
+    //lcd.setBacklight(RED);
+    ppm[1] = 1500; // if controller is disconnected for some reason, throttle gets zeroed
+  }
+    
+   delay(1);
 } 
 // End Loop
 
