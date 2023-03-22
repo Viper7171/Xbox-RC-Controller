@@ -174,11 +174,15 @@ void loop() {
   if (Xbox.XboxOneConnected) {
     if (Xbox.getAnalogHat(LeftHatX) > 7500 || Xbox.getAnalogHat(LeftHatX) < -7500 || Xbox.getAnalogHat(LeftHatY) > 7500 || Xbox.getAnalogHat(LeftHatY) < -7500 || Xbox.getAnalogHat(RightHatX) > 7500 || Xbox.getAnalogHat(RightHatX) < -7500 || Xbox.getAnalogHat(RightHatY) > 7500 || Xbox.getAnalogHat(RightHatY) < -7500) {
       if (Xbox.getAnalogHat(LeftHatX) > 7500 || Xbox.getAnalogHat(LeftHatX) < -7500) {
-        Serial.print(F("LeftHatX: "));
-        Serial.print(Xbox.getAnalogHat(LeftHatX));
-        Serial.print("\t");
-        nSVal = Xbox.getAnalogHat(LeftHatX);
-        ShowSteering();
+        ppm[0] = map(Xbox.getAnalogHat(LeftHatX), -32768 , 32768, 1000, 2000) + steeringTrimActual;
+      } else {
+        ppm[0] = 1500 + steeringTrimActual;
+         
+        //Serial.print(F("LeftHatX: "));
+        //Serial.print(Xbox.getAnalogHat(LeftHatX));
+        //Serial.print("\t");
+        //nSVal = Xbox.getAnalogHat(LeftHatX);
+        //ShowSteering();
       }
       if (Xbox.getAnalogHat(LeftHatY) > 7500 || Xbox.getAnalogHat(LeftHatY) < -7500) {
         Serial.print(F("LeftHatY: "));
@@ -203,18 +207,18 @@ void loop() {
     // Get LT for Brake/Reverse
     if (Xbox.getButtonPress(LT) > 0 || Xbox.getButtonPress(RT) > 0) {
       if (Xbox.getButtonPress(LT) > 0) {
-        Serial.print(F("LT: "));
-        Serial.print(Xbox.getButtonPress(LT));
-        Serial.print("\t");
-        nTVal = Xbox.getButtonPress(LT) * (-1);
-        ShowThrottle();
+        //Serial.print(F("LT: "));
+        //Serial.print(Xbox.getButtonPress(LT));
+        //Serial.print("\t");
+        //nTVal = Xbox.getButtonPress(LT) * (-1);
+        //ShowThrottle();
       }
       if (Xbox.getButtonPress(RT) > 0) {
-        Serial.print(F("RT: "));
-        Serial.print(Xbox.getButtonPress(RT));
-        Serial.print("\t");
+        //Serial.print(F("RT: "));
+        //Serial.print(Xbox.getButtonPress(RT));
+        //Serial.print("\t");
         nTVal = Xbox.getButtonPress(RT);
-        ShowThrottle();
+        //ShowThrottle();
       }
       Serial.println();
     }
