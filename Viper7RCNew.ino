@@ -172,8 +172,8 @@ void setup() {
 void loop() {
   Usb.Task();
   if (Xbox.XboxOneConnected) {
-    if (Xbox.getAnalogHat(LeftHatX) > 7500 || Xbox.getAnalogHat(LeftHatX) < -7500 || Xbox.getAnalogHat(LeftHatY) > 7500 || Xbox.getAnalogHat(LeftHatY) < -7500 || Xbox.getAnalogHat(RightHatX) > 7500 || Xbox.getAnalogHat(RightHatX) < -7500 || Xbox.getAnalogHat(RightHatY) > 7500 || Xbox.getAnalogHat(RightHatY) < -7500) {
-      if (Xbox.getAnalogHat(LeftHatX) > 7500 || Xbox.getAnalogHat(LeftHatX) < -7500) {
+    if (Xbox.getAnalogHat(LeftHatX) > 2500 || Xbox.getAnalogHat(LeftHatX) < -2500 || Xbox.getAnalogHat(LeftHatY) > 7500 || Xbox.getAnalogHat(LeftHatY) < -7500 || Xbox.getAnalogHat(RightHatX) > 7500 || Xbox.getAnalogHat(RightHatX) < -7500 || Xbox.getAnalogHat(RightHatY) > 7500 || Xbox.getAnalogHat(RightHatY) < -7500) {
+      if (Xbox.getAnalogHat(LeftHatX) > 2500 || Xbox.getAnalogHat(LeftHatX) < -2500) {
         ppm[0] = map(Xbox.getAnalogHat(LeftHatX), -32768 , 32768, 1000, 2000) + steeringTrimActual;
       } else {
         ppm[0] = 1500 + steeringTrimActual;
@@ -184,29 +184,34 @@ void loop() {
         //nSVal = Xbox.getAnalogHat(LeftHatX);
         //ShowSteering();
       }
-      if (Xbox.getAnalogHat(LeftHatY) > 7500 || Xbox.getAnalogHat(LeftHatY) < -7500) {
-        Serial.print(F("LeftHatY: "));
-        Serial.print(Xbox.getAnalogHat(LeftHatY));
-        Serial.print("\t");
-      }
-      if (Xbox.getAnalogHat(RightHatX) > 7500 || Xbox.getAnalogHat(RightHatX) < -7500) {
-        Serial.print(F("RightHatX: "));
-        Serial.print(Xbox.getAnalogHat(RightHatX));
-        Serial.print("\t");
-      }
-      if (Xbox.getAnalogHat(RightHatY) > 7500 || Xbox.getAnalogHat(RightHatY) < -7500) {
-        Serial.print(F("RightHatY: "));
-        Serial.print(Xbox.getAnalogHat(RightHatY));
-        nSVal=Xbox.getAnalogHat(RightHatY);
-        ShowThrottle();       
-      }
-      Serial.println();
+//      if (Xbox.getAnalogHat(LeftHatY) > 7500 || Xbox.getAnalogHat(LeftHatY) < -7500) {
+//        Serial.print(F("LeftHatY: "));
+//        Serial.print(Xbox.getAnalogHat(LeftHatY));
+//        Serial.print("\t");
+//      }
+//      if (Xbox.getAnalogHat(RightHatX) > 7500 || Xbox.getAnalogHat(RightHatX) < -7500) {
+//        Serial.print(F("RightHatX: "));
+//        Serial.print(Xbox.getAnalogHat(RightHatX));
+//        Serial.print("\t");
+//      }
+//      if (Xbox.getAnalogHat(RightHatY) > 7500 || Xbox.getAnalogHat(RightHatY) < -7500) {
+//        Serial.print(F("RightHatY: "));
+//        Serial.print(Xbox.getAnalogHat(RightHatY));
+//        nSVal=Xbox.getAnalogHat(RightHatY);
+//        ShowThrottle();       
+//      }
+//      Serial.println();
     }
 
     // Get RT for Throttle
     // Get LT for Brake/Reverse
     if (Xbox.getButtonPress(LT) > 0 || Xbox.getButtonPress(RT) > 0) {
       if (Xbox.getButtonPress(LT) > 0) {
+         ppm[1] = map(Xbox.getButtonPress(LT), 0 , 1023, 1000, 1500);
+      } else {
+        ppm[1] = 1500;
+          
+        
         //Serial.print(F("LT: "));
         //Serial.print(Xbox.getButtonPress(LT));
         //Serial.print("\t");
@@ -214,7 +219,7 @@ void loop() {
         //ShowThrottle();
       }
       if (Xbox.getButtonPress(RT) > 0) {
-         ppm[1] = map(Xbox.getButtonPress(RT), 0 , 1024, 1500, 2000);
+         ppm[1] = map(Xbox.getButtonPress(RT), 0 , 1023, 1500, 2000);
       } else {
         ppm[1] = 1500;
           
@@ -224,7 +229,7 @@ void loop() {
         //nTVal = Xbox.getButtonPress(RT);
         //ShowThrottle();
       }
-      Serial.println();
+//      Serial.println();
     }
 
    // V7G Commented out the Trigger Rumble 
@@ -245,14 +250,14 @@ void loop() {
 
     // Dpad Up - Adjust Throttle Trim Up
     if (Xbox.getButtonClick(UP)) {
-      Serial.println(F("Throttle Trim Up"));
+//      Serial.println(F("Throttle Trim Up"));
       throttleTrim = throttleTrim + 1;
       throttleTrimRefreshLCD();
     }
     
     // Dpad Down - Adjust Throttle Trim Down   
     if (Xbox.getButtonClick(DOWN)) {
-      Serial.println(F("Throttle Trim Down"));
+//      Serial.println(F("Throttle Trim Down"));
       throttleTrim = throttleTrim - 1;
       throttleTrimRefreshLCD();
     }
@@ -260,67 +265,66 @@ void loop() {
     // Dpad Left - Adjust Steering Trim Left   
     if (Xbox.getButtonClick(LEFT)) {
       Serial.println(F("Steering Trim Left"));
-      steeringTrim = steeringTrim - 1;
+//      steeringTrim = steeringTrim - 1;
       steeringTrimRefreshLCD();
     }
     
    // Adjust Steering Trim Right   
     if (Xbox.getButtonClick(RIGHT)) {
       Serial.println(F("Steering Trim Right"));
-      steeringTrim = steeringTrim + 1;
+//      steeringTrim = steeringTrim + 1;
       steeringTrimRefreshLCD();
     }
     
     // Throttle Trim Reset
     if (Xbox.getButtonClick(START)) {
-      Serial.println(F("Throttle Trim Reset"));
+//      Serial.println(F("Throttle Trim Reset"));
       throttleTrim = 0;
       throttleTrimRefreshLCD();
     }
     
     // Steering Trim Reset
     if (Xbox.getButtonClick(BACK)) {
-      Serial.println(F("Steering Trim Reset"));
+//      Serial.println(F("Steering Trim Reset"));
       steeringTrim = 0;
       steeringTrimRefreshLCD();
     }
     
-    if (Xbox.getButtonClick(XBOX))
-      Serial.println(F("Xbox"));
-    if (Xbox.getButtonClick(SYNC))
-      Serial.println(F("Sync"));
-    if (Xbox.getButtonClick(SHARE))
-      Serial.println(F("Share"));
+//    if (Xbox.getButtonClick(XBOX))
+//      Serial.println(F("Xbox"));
+//    if (Xbox.getButtonClick(SYNC))
+//      Serial.println(F("Sync"));
+//    if (Xbox.getButtonClick(SHARE))
+//      Serial.println(F("Share"));
 
-    if (Xbox.getButtonClick(LB))
-      Serial.println(F("LB"));
-    if (Xbox.getButtonClick(RB))
-      Serial.println(F("RB"));
-    if (Xbox.getButtonClick(LT))
-      Serial.println(F("LT"));
-    if (Xbox.getButtonClick(RT))
-      Serial.println(F("RT"));
-    if (Xbox.getButtonClick(L3))
-      Serial.println(F("L3"));
-    if (Xbox.getButtonClick(R3))
-      Serial.println(F("R3"));
+//    if (Xbox.getButtonClick(LB))
+//      Serial.println(F("LB"));
+//    if (Xbox.getButtonClick(RB))
+//      Serial.println(F("RB"));
+//    if (Xbox.getButtonClick(LT))
+//      Serial.println(F("LT"));
+//    if (Xbox.getButtonClick(RT))
+//      Serial.println(F("RT"));
+//    if (Xbox.getButtonClick(L3))
+//      Serial.println(F("L3"));
+//    if (Xbox.getButtonClick(R3))
+//      Serial.println(F("R3"));
 
-
-    if (Xbox.getButtonClick(A)) {
-      Serial.println(F("A"));
-      nTVal = Xbox.getButtonPress(RT);
-      ShowThrottle();
-
-      nSVal = Xbox.getAnalogHat(LeftHatX);
-      ShowSteering();
-    }
+//    if (Xbox.getButtonClick(A)) {
+//      Serial.println(F("A"));
+//      nTVal = Xbox.getButtonPress(RT);
+//      ShowThrottle();
+//
+//      nSVal = Xbox.getAnalogHat(LeftHatX);
+//      ShowSteering();
+//    }
    
-    if (Xbox.getButtonClick(B))
-      Serial.println(F("B"));
-    if (Xbox.getButtonClick(X))
-      Serial.println(F("X"));
-    if (Xbox.getButtonClick(Y))
-      Serial.println(F("Y"));
+//    if (Xbox.getButtonClick(B))
+//      Serial.println(F("B"));
+//    if (Xbox.getButtonClick(X))
+//      Serial.println(F("X"));
+//    if (Xbox.getButtonClick(Y))
+//      Serial.println(F("Y"));
   }
  
   if (Xbox.XboxOneConnected == false){
@@ -394,16 +398,16 @@ void throttleTrimRefreshLCD() {
   lcd.print(String(throttleTrimLCD) + "   ");
 }
 
-void ShowSteering() {
-
-  lcd.setCursor(9, 0);
-  lcd.print(String(nSVal) + "        ");
-
-}
-
-void ShowThrottle() {
-
-  lcd.setCursor(9, 1);
-  lcd.print(String(nTVal) + "        ");
-
-}
+//void ShowSteering() {
+//
+//  lcd.setCursor(9, 0);
+//  lcd.print(String(nSVal) + "        ");
+//
+//}
+//
+//void ShowThrottle() {
+//
+//  lcd.setCursor(9, 1);
+//  lcd.print(String(nTVal) + "        ");
+//
+//}
