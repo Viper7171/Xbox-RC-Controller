@@ -264,15 +264,15 @@ void loop() {
     
     // Dpad Left - Adjust Steering Trim Left   
     if (Xbox.getButtonClick(LEFT)) {
-      Serial.println(F("Steering Trim Left"));
-//      steeringTrim = steeringTrim - 1;
+//      Serial.println(F("Steering Trim Left"));
+      steeringTrim = steeringTrim - 1;
       steeringTrimRefreshLCD();
     }
     
    // Adjust Steering Trim Right   
     if (Xbox.getButtonClick(RIGHT)) {
-      Serial.println(F("Steering Trim Right"));
-//      steeringTrim = steeringTrim + 1;
+//      Serial.println(F("Steering Trim Right"));
+      steeringTrim = steeringTrim + 1;
       steeringTrimRefreshLCD();
     }
     
