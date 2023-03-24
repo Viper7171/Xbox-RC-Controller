@@ -207,9 +207,9 @@ void loop() {
     // Get LT for Brake/Reverse
     if (Xbox.getButtonPress(LT) > 0 || Xbox.getButtonPress(RT) > 0) {
       if (Xbox.getButtonPress(LT) > 0) {
-         ppm[1] = map(Xbox.getButtonPress(LT), 0 , 1023, 1500, 1000);
+         ppm[1] = map(Xbox.getButtonPress(LT), 0 , 1023, 1500, 1000) + throttleTrimActual;
       } else {
-        ppm[1] = 1500;
+        ppm[1] = 1500 + throttleTrimActual;
           
         
         //Serial.print(F("LT: "));
@@ -219,9 +219,9 @@ void loop() {
         //ShowThrottle();
       }
       if (Xbox.getButtonPress(RT) > 0) {
-         ppm[1] = map(Xbox.getButtonPress(RT), 0 , 1023, 1500, 2000);
+         ppm[1] = map(Xbox.getButtonPress(RT), 0 , 1023, 1500, 2000) + throttleTrimActual;
       } else {
-        ppm[1] = 1500;
+        ppm[1] = 1500 + throttleTrimActual;
           
         //Serial.print(F("RT: "));
         //Serial.print(Xbox.getButtonPress(RT));
