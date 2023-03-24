@@ -207,7 +207,7 @@ void loop() {
     // Get LT for Brake/Reverse
     if (Xbox.getButtonPress(LT) > 0 || Xbox.getButtonPress(RT) > 0) {
       if (Xbox.getButtonPress(LT) > 0) {
-         ppm[1] = map(Xbox.getButtonPress(LT), 0 , 1023, 1000, 1500);
+         ppm[1] = map(Xbox.getButtonPress(LT), 0 , 1023, 1500, 1000);
       } else {
         ppm[1] = 1500;
           
