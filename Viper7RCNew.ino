@@ -331,8 +331,6 @@ void loop() {
     //lcd.setBacklight(RED);
     ppm[1] = 1500; // if controller is disconnected for some reason, throttle gets zeroed
   }
-    
-   delay(1);
 } 
 // End Loop
 
