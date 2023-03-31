@@ -1,5 +1,5 @@
 /*
- * Viper7RCMaster.ino 3/12 0
+ * Viper7RCMaster.ino 3/12 Ver1.0 Build 0002
  *
  * Sketch by Viper7Gamer
  * For using Xbox Series X Controller
