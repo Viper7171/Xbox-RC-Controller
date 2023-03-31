@@ -1,5 +1,5 @@
 /*
- * Viper7RCNew.ino 3/17
+ * Viper7RCNew.ino 3/17/2023 Ver1.0005
  *
  * Sketch by Viper7Gamer
  * For using Xbox Series X Controller
@@ -68,7 +68,7 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 int steeringTrim = 0;
 int steeringTrimLCD = 0;
 int steeringTrimActual = 0;
-int steeringTrimIncrement = 100;
+int steeringTrimIncrement = 20;
 
 int throttleTrim = 0;
 int throttleTrimLCD = 0;
@@ -172,8 +172,8 @@ void setup() {
 void loop() {
   Usb.Task();
   if (Xbox.XboxOneConnected) {
-    if (Xbox.getAnalogHat(LeftHatX) > 2500 || Xbox.getAnalogHat(LeftHatX) < -2500 || Xbox.getAnalogHat(LeftHatY) > 7500 || Xbox.getAnalogHat(LeftHatY) < -7500 || Xbox.getAnalogHat(RightHatX) > 7500 || Xbox.getAnalogHat(RightHatX) < -7500 || Xbox.getAnalogHat(RightHatY) > 7500 || Xbox.getAnalogHat(RightHatY) < -7500) {
-      if (Xbox.getAnalogHat(LeftHatX) > 2500 || Xbox.getAnalogHat(LeftHatX) < -2500) {
+    if (Xbox.getAnalogHat(LeftHatX) > 200 || Xbox.getAnalogHat(LeftHatX) < -200 || Xbox.getAnalogHat(LeftHatY) > 7500 || Xbox.getAnalogHat(LeftHatY) < -7500 || Xbox.getAnalogHat(RightHatX) > 7500 || Xbox.getAnalogHat(RightHatX) < -7500 || Xbox.getAnalogHat(RightHatY) > 7500 || Xbox.getAnalogHat(RightHatY) < -7500) {
+      if (Xbox.getAnalogHat(LeftHatX) > 200 || Xbox.getAnalogHat(LeftHatX) < -200) {
         ppm[0] = map(Xbox.getAnalogHat(LeftHatX), -32768 , 32768, 1000, 2000) + steeringTrimActual;
       } else {
         ppm[0] = 1500 + steeringTrimActual;
