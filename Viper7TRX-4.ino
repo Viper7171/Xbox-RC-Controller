@@ -1,5 +1,5 @@
 /* Traxxas TRX-4 Bronco
- * ViperTRX.ino 5/10/2023 Ver1.0 Build 0001
+ * Viper7TRX-4.ino 5/10/2023 Ver1.0 Build 0002
  *
  * Sketch by Viper7Gamer
  * For using Xbox Series X Controller
@@ -135,6 +135,9 @@ void setup() {
       ppm[i]= CHANNEL_DEFAULT_VALUE;
     }
   }
+
+  // Set to Low Gear
+  ppm[2] = 2000;
   
   pinMode(sigPin, OUTPUT);
   pinMode(SWITCH_PIN, INPUT_PULLUP);
@@ -292,10 +295,18 @@ void loop() {
     //    if (Xbox.getButtonClick(SHARE))
     //      Serial.println(F("Share"));
 
-    //    if (Xbox.getButtonClick(LB))
-    //      Serial.println(F("LB"));
-    //    if (Xbox.getButtonClick(RB))
-    //      Serial.println(F("RB"));
+    // Set to Low Gear
+    if (Xbox.getButtonClick(LB)) {
+      //    Serial.println(F("LB"));
+      ppm[2] = 2000;
+    }
+
+    // Set to High Gear
+    if (Xbox.getButtonClick(RB)) {
+      //      Serial.println(F("RB"));
+      ppm[2] = 1000;
+    }
+
     //    if (Xbox.getButtonClick(LT))
     //      Serial.println(F("LT"));
     //    if (Xbox.getButtonClick(RT))
